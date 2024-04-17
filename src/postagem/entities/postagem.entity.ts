@@ -1,5 +1,6 @@
 import { IsNotEmpty } from "class-validator";
-import { Entity, PrimaryGeneratedColumn, UpdateDateColumn, Column } from "typeorm";
+import { Tema } from "src/tema/entities/tema.entity";
+import { Entity, PrimaryGeneratedColumn, UpdateDateColumn, Column, ManyToOne } from "typeorm";
 
 @Entity({name: "tb_postagens"})
 export class Postagem{
@@ -17,4 +18,9 @@ export class Postagem{
     
     @UpdateDateColumn()
     data: Date;
+
+    @ManyToOne(() => Tema, (tema) => tema.postagem, {
+        onDelete: "CASCADE"
+    })
+    tema: Tema; // Chave estrangeira
 };

@@ -1,5 +1,6 @@
 import { IsNotEmpty } from "class-validator";
-import { Entity, PrimaryGeneratedColumn, UpdateDateColumn, Column } from "typeorm";
+import { Postagem } from "src/postagem/entities/postagem.entity";
+import { Entity, PrimaryGeneratedColumn, UpdateDateColumn, Column, OneToMany } from "typeorm";
 
 @Entity({name: "tb_temas"})
 export class Tema{
@@ -10,4 +11,7 @@ export class Tema{
     @IsNotEmpty()
     @Column({length: 255, nullable: false})
     descricao: string;
+
+    @OneToMany(() => Postagem, (postagem) => postagem.tema)
+    postagem: Postagem[] //Listar todas as postagens associadas ao tema
 };
