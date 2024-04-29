@@ -1,14 +1,13 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Postagem } from './postagem/entities/postagem.entity';
-import { PostagemModule } from './postagem/postagem.module';
-import { TemaModule } from './tema/tema.module';
-import { Tema } from './tema/entities/tema.entity';
-import { AuthModule } from './auth/auth.module';
-import { Usuario } from './usuario/entities/usuario.entity';
-import { UsuarioModule } from './usuario/usuario.module';
+import { Module } from "@nestjs/common";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { Postagem } from "./postagem/entities/postagem.entity";
+import { Tema } from "./tema/entities/tema.entity";
+import { Usuario } from "./usuario/entities/usuario.entity";
+import { PostagemModule } from "./postagem/postagem.module";
+import { TemaModule } from "./tema/tema.module";
+import { AuthModule } from "./auth/auth.module";
+import { UsuarioModule } from "./usuario/usuario.module";
+
 
 @Module({
   imports: [
@@ -20,7 +19,8 @@ import { UsuarioModule } from './usuario/usuario.module';
       password: 'root',
       database: 'db_blogpessoal',
       entities: [Postagem, Tema, Usuario],
-      synchronize: true
+      synchronize: true,
+      logging: true,
     }),
     PostagemModule,
     TemaModule,
